@@ -22,6 +22,7 @@ const BuildCards = ({ onSave }) => {
   };
 
   const handleAddCard = () => {
+    if(inputText1 !== "" || inputText2 !== ""){
     const newCard = {
       question: inputText1,
       answer: inputText2,
@@ -31,6 +32,10 @@ const BuildCards = ({ onSave }) => {
     setInputText1(''); // Clear input 1
     setInputText2(''); // Clear input 2
     console.log(cards)
+    } else {
+      console.log("Please insert questions or answers.")
+    }
+    
   };
 
   const handleFinishDeck = async () => {
