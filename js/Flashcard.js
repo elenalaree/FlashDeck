@@ -31,7 +31,7 @@ const Flashcard = ({ flashcards }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: 300,
+        width: 400,
         height: 200,
         backgroundColor: 'white',
         borderRadius: 10,
