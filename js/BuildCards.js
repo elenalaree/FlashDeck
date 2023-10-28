@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BuildCards = ({ onSave }) => {
+
+const BuildCards = ({ navigation }) => {
   const [deckName, setDeckName] = useState('');
   const [inputText1, setInputText1] = useState('');
   const [inputText2, setInputText2] = useState('');
@@ -65,6 +66,7 @@ const BuildCards = ({ onSave }) => {
       
       setDeckName('');
       setCards([]);
+      navigation.navigate('Home', {newDeckAdded: true})
     } catch (error) {
       console.error('Error saving deck', error);
     }

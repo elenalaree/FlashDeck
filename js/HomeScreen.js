@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
 
     const emptyDecks = async () => {
         try {
             await AsyncStorage.clear(); // Clear all items in local storage
             console.log('Local storage cleared.');
+            setDeckNames([]);
         } catch (error) {
             console.error('Error clearing local storage:', error);
         }
@@ -17,8 +18,13 @@ const HomeScreen = ({ navigation }) => {
     const [deckNames, setDeckNames] = useState([]);
 
     useEffect(() => {
-        fetchDeckNames();
-    }, [])
+        if (route.params && route.params.newDeckAdded) {
+            fetchDeckNames(); // Reload the deck names
+        } else {
+            fetchDeckNames(); // Load deck names on page load
+        }
+    }, [route.params]);
+    
 
     const fetchDeckNames = async () => {
         try {
